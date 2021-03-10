@@ -1,4 +1,4 @@
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plt
 def odredi_pravac(x1,y1,x2,y2, znak):
     x_koordinate=[x1,x2]
     y_koordinate=[y1,y2]
