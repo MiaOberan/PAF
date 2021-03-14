@@ -1,0 +1,32 @@
+from math import sin
+from math import cos
+import matplotlib.pyplot as plt
+v0=50
+theta=30
+vx=v0*cos(theta)
+x=0
+y=0
+dt=1
+t=0
+g=9.81
+t_lista=[]
+x_lista=[]
+y_lista=[]
+for i in range(10):
+    X=vx*t
+    y=v0*sin(theta)*t -1/2*g*t**2
+    t+=dt
+    x_lista.append(x)
+    y_lista.append(y)
+    t_lista.append(t)
+plt.subplot(311)
+plt.plot(x_lista,y_lista,"g")
+plt.title("y-x graf")
+
+plt.subplot(312)
+plt.plot(t_lista,x_lista)
+plt.title("x-t graf")
+plt.subplot(313)
+plt.plot(t_lista,y_lista,"r")
+plt.title("y-t graf")
+plt.show()    
