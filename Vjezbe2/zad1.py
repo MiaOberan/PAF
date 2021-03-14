@@ -20,7 +20,7 @@ for i in range(10):
     akceleracija.append(a)
 plt.subplot(311)
 plt.plot(vrijeme,pomak)
-plt.title("x-t graf")
+plt.title("x-t  graf")
 plt.subplot(312)
 plt.plot(vrijeme,brzina,"r")
 plt.title("v-t graf")
