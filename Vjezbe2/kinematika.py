@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from math import sin
 from math import cos
+from math import radians
 def jednoliko_gibanje(F,m,t):
     a=F/m
     dt=1
@@ -11,7 +12,7 @@ def jednoliko_gibanje(F,m,t):
     brzina=[]
     pomak=[]
     vrijeme=[]
-    for i in range(10):
+    for i in range(N):
         v=v+ a*dt
         x=x+v*dt
         t+=dt
@@ -23,14 +24,16 @@ def jednoliko_gibanje(F,m,t):
     plt.plot(vrijeme,pomak)
     plt.title("x-t graf")
     plt.subplot(312)
-    plt.plolt(vrijeme,brzina,"r")
+    plt.plot(vrijeme,brzina,"c")
     plt.title("v-t graf")
     plt.subplot(313)
-    plt.plot(vrijeme,akceleracija,"g")
+    plt.plot(vrijeme,akceleracija,"m")
     plt.title("a-t graf")
     plt.show()
 def kosi_hitac(v0,theta,t):
-    vx=v0*cos(theta)
+    theta2=radians(theta)
+    vx=v0*cos(theta2)
+    vy=v0*sin(theta2)
     x=0
     y=0
     dt=1
@@ -41,16 +44,17 @@ def kosi_hitac(v0,theta,t):
     x_lista=[]
     y_lista=[]
     for i in range(N):
-        x=vx*t
-        y=v0*sin(theta)*t-(1/2)*g*t**2
+        x=x+vx*dt
+        vy=vy-g*dt
+        y=y+vy*dt
         t+=dt
         x_lista.append(x)
         y_lista.append(y)
         t_lista.append(t)
     plt.subplot(311)
-    plt.plot(x_lista,y_lista,"g")
+    plt.plot(x_lista,y_lista,"k")
     plt.subplot(312)
     plt.plot(t_lista,x_lista)
     plt.subplot(313)
-    plt.plot(t_lista,y_lista,"r")
+    plt.plot(t_lista,y_lista,"c",linewidth=2)
     plt.show()
