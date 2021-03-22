@@ -30,4 +30,3 @@ class Particle:
         g=9.81
         D=(v0**2)/g*sin*2*(radians(self.theta))
         print("Domet je",D,"metara")
-    def plot_trajectory()
