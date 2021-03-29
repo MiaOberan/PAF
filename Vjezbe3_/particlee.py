@@ -1,12 +1,13 @@
 from math import sin,cos,radians
 class Particle:
-    def __innit(self,v0,theta,x0,y0):
+    def __innit(self,v0,theta,x0,y0,dt):
         self.v0=v0
         self.theta=theta
         self.x0=x0
         self.y0=y0
         self.x_=[]
         self.y_=[]
+        self.dt=dt
     def printInfo(self):
         print(self.v0,self.theta,self.x0,self.y0)
     def reset(self):
