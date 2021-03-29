@@ -1,41 +1,43 @@
 from math import sin,cos,radians
+import matplotlib.pyplot as plt
 class Particle:
-    def __innit(self,v0,theta,x0,y0,dt):
+    def __init__(self,v0,theta,x0,y0,dt):
         self.v0=v0
         self.theta=theta
-        self.x0=x0
-        self.y0=y0
+        self.x=x0
+        self.y=y0
         self.x_=[]
         self.y_=[]
-        self.dt=dt
+        self.x_.append(x0)
+        self.y_.append(y0)
+        self.vx = v0*cos(self.theta)
+        self.vy = v0*sin(self.theta)
     def printInfo(self):
         print(self.v0,self.theta,self.x0,self.y0)
     def reset(self):
-        self.v0=None
-        self.theta=None
-        self.x0=None
-        self.y0=None
+        self.v0=0
+        self.theta=0
+        self.x0=0
+        self.y0=0
+        self.y_ = []
+        self.x_ = []
     def __move(self,dt):
         g=9.81
-        y=self.y0
-        x=self.x0
         theta=radians(self.theta)
-        vx=self.v0*cos(self.theta)
-        x=self.x0+vx*dt
-        vy=self.v0*sin(self.theta)
-        vy=vy-g*dt
-        y=self.yo*vy*dt
-        self.x_.append(x)
-        self.y_.append(y)
-    def range(self,theta):
+        self.x = self.x + self.vx*dt
+        self.vy = self.vy - g*dt
+        self.y = self.y + self.vy*dt
+        self.x_.append(self.x)
+        self.y_.append(self.y)
+    def range(self,dt):
         while True: 
-            self.__move()
-            if self.y0 <= 0:
+            self.__move(dt)
+            if self.y <= 0:
                 break
+        return self.x
     def plot_trajectory(self):
-        x_kord = [self.x]
-        y_kord = [self.y]
-        plt.scatter(x_cord,y_cord,s=1)
+       
+        plt.plot(self.x_,self.y_)
         plt.xlabel('Domet')
         plt.ylabel('Visina')
         plt.show()
