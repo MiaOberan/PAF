@@ -40,7 +40,7 @@ class Particle:
         plt.ylabel('Visina')
         plt.show()
         
-     def analiticko_rjesenje(self,theta):
+    def analiticko_rjesenje(self,theta):
         g=9.81
         D = (self.v0**2/g) * math.sin(2 * self.theta)
         return D
