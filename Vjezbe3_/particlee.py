@@ -27,6 +27,19 @@ class Particle:
         self.x_.append(x)
         self.y_.append(y)
     def range(self,theta):
+        while True: 
+            self.__move()
+            if self.y0 <= 0:
+                break
+    def plot_trajectory(self):
+        x_kord = [self.x]
+        y_kord = [self.y]
+        plt.scatter(x_cord,y_cord,s=1)
+        plt.xlabel('Domet')
+        plt.ylabel('Visina')
+        plt.show()
+        
+     def analiticko_rjesenje(self,theta):
         g=9.81
-        D=(v0**2)/g*sin*2*(radians(self.theta))
-        print("Domet je",D,"metara")
+        D = (self.v0**2/g) * math.sin(2 * self.theta)
+        return D
