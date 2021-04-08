@@ -1,13 +1,14 @@
-from math import sin,cos,radians
+from math import sin,cos,radians,sqrt
 import matplotlib.pyplot as plt
 class Particle:
     def __init__(self,v0,theta,x0,y0,dt):
         self.v0=v0
-        self.theta=theta
+        self.theta=radians(theta)
         self.x=x0
         self.y=y0
         self.x_=[]
         self.y_=[]
+        self.vy_ = []
         self.x_.append(x0)
         self.y_.append(y0)
         self.vx = v0*cos(self.theta)
@@ -21,6 +22,7 @@ class Particle:
         self.y0=0
         self.y_ = []
         self.x_ = []
+        self.vy_ = []
     def __move(self,dt):
         g=9.81
         theta=radians(self.theta)
@@ -29,6 +31,7 @@ class Particle:
         self.y = self.y + self.vy*dt
         self.x_.append(self.x)
         self.y_.append(self.y)
+        self.vy_.append(self.vy)
     def range(self,dt):
         while True: 
             self.__move(dt)
@@ -46,3 +49,7 @@ class Particle:
         g=9.81
         D = (self.v0**2/g) * math.sin(2 * self.theta)
         return D
+p1 = Particle(70,15,0,0,0.01)
+print(p1.range(0.001))
+p1.plot_trajectory()
+p1.reset()
