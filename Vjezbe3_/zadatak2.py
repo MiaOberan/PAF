@@ -64,6 +64,6 @@ for i in range(100):
 
 plt.xlabel('dt/s')
 plt.ylabel('greska/ % ')
-plt.plot(dt_, greske,"m")
+plt.plot(dt_, greske,"c")
 plt.show()
 
