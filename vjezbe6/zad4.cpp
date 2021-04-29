@@ -38,6 +38,8 @@ else{
 #to je bio prvi pokusaj, ne ide bas ali neka ostane ovdje za primjer kada budem ucila
 
 
+#include <iostream>
+
 float sustav(float a1,float b1, float c1,float a2,float b2, float c2)
 {
     float x; 
@@ -52,3 +54,4 @@ int main()
 {
     sustav(4,6,2,3,8,7);
      return 0;
+}
