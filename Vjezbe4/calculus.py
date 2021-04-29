@@ -21,12 +21,12 @@ def deriviraj(func,h,x1,x2,m=3):
         d_lista.append(d)
     return x_lista,d_lista
 
-    def integriracija(func,a,b,N):
+def integracija1(func,a,b,N):
     dx = (b-a)/N
     x_gornja = a
     x_donja = a+dx 
-    gornja_m = 0
-    donja_m = 0
+    gornja_m = 0.
+    donja_m = 0.
     for i in range(N):
         gornja_m += func(x_gornja)*dx
         donja_m += func(x_donja)*dx
@@ -34,9 +34,9 @@ def deriviraj(func,h,x1,x2,m=3):
         x_gornja += dx 
     return gornja_m,donja_m
 def integracija(func,a,b,N):
-        dx = (b-a)/N
-        xk = a
-        suma = 0
+    dx = (b-a)/N
+    xk = a
+    suma = 0
     for i in range(N):
         suma += (func(xk) + func(xk+dx))
         xk += dx
