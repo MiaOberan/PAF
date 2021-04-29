@@ -2,20 +2,43 @@ import module
 import numpy as np
 import math
 
-def f1(x):
-    return 5*x**3-2*x**2+2*x-3
-print(module.deriv(f1,1,0.0001))
 def deriv(funkc,x,h):
     return(funkc(x+h)-funkc(x-h))/(2*h)
 
-def deriv2(funkc,h,x1,x2):
-    deriv_lista=[]
-    x_list=np.arange(x1,x2,h)
-    for x in x_list:
-        der=deriv(funkc,x,h)
-        deriv_lista.append(der)
-    return x_list,deriv_lista
+def deriv2(func,x,h):
+    return (func(x+h) - func(x)) / h
 
-x,y=deriv2(f1,0.1,1,3)
-a,b=deriv2(f1,0.001,1,2)
-print(a,b)
+def deriviraj(func,h,x1,x2,m=3):
+    
+    der_lista = []
+    x_lista = np.arange(x1,x2,h)
+    
+    for x in x_lista:
+        if m ==3:
+            d = deriv2(func,h,x)
+        elif m == 2:
+            d = deriv(func,h,x)
+        d_lista.append(d)
+    return x_lista,d_lista
+
+    def integriracija(func,a,b,N):
+    dx = (b-a)/N
+    x_gornja = a
+    x_donja = a+dx 
+    gornja_m = 0
+    donja_m = 0
+    for i in range(N):
+        gornja_m += func(x_gornja)*dx
+        donja_m += func(x_donja)*dx
+        x_donja+= dx
+        x_gornja += dx 
+    return gornja_m,donja_m
+def integracija(func,a,b,N):
+        dx = (b-a)/N
+        xk = a
+        suma = 0
+    for i in range(N):
+        suma += (func(xk) + func(xk+dx))
+        xk += dx
+    integr = (dx/2)*suma
+    return integr
