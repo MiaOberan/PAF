@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     int a1, b1, c1, a2, b2, c2;
-    cout << "Unesi drugu jednadzbu" << endl;
+    cout << "Unesi prvu jednadzbu" << endl;
     cout << "Unesi vrijednost za a1" << endl;
     cin >> a1;
     cout << "Unesi vrijednost za b1" << endl;
