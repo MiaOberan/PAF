@@ -14,7 +14,7 @@ for x in x_l1:
     d = 15*x**2 - 4*x +2
     d_l1.append(d)
 
-a,b = calculus.derivacija(f4,0.1,-2,2)
+a,b = calculus.derivacija(f4,0.1,-3,3)
 plt.plot(x_l1,d_l1)
 plt.scatter(a,b, s = 5, color = 'm')
 plt.show()
