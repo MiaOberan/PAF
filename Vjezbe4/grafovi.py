@@ -35,38 +35,3 @@ c,d = calculus.derivacija(ftrig,0.01,-10,10)
 plt.plot(x_l2,d_l2)
 plt.scatter(c,d, s = 1, color = 'k')
 plt.show()
-#integrali
-a = 0
-b = 15
-def f1(x):
-    return x**2-4*x+2
-def integ_f(x):
-    return x**3/3-2*x**2+2*x
-
-d_lista = []
-gornja = []
-donja = []
-trapez = []
-analiticki = []
-
-dn = 50
-for i in range(1,20):
-    d = dn * i
-    d_lista.append(d)
-   
-
-for d in d_list:
-    gm, dm = calculus.integriraj(f1,a,b,d)
-    trap = calculus.integracija(f1,a,b,d)
-    analit = integ_f(b)-integ_f(a)
-    gornja.append(gm)
-    donja.append(dm)
-    trapez.append(trap)
-    analiticki.append(analit)
-    
-plt.plot(d_lista,gornja, '.')
-plt.plot(d_lista,donja, '.')
-plt.plot(d_lista,trapezno, '.')
-plt.plot(d_lista,analiticko)
-
-plt.show()
