@@ -1,4 +1,3 @@
-import module
 import numpy as np
 import math
 
@@ -15,17 +14,18 @@ def deriviraj(func,h,x1,x2,m=3):
     
     for x in x_lista:
         if m ==3:
-            d = deriv2(func,h,x)
+            d = deriv2(func,x,h)
         elif m == 2:
-            d = deriv(func,h,x)
-        d_lista.append(d)
-    return x_lista,d_lista
+            d = deriv(func,x,h)
+        der_lista.append(d)
+        #Sprint(x,d)
+    return x_lista,der_lista
 
 def integracija1(func,a,b,N):
     dx = (b-a)/N
     x_gornja = a
     x_donja = a+dx 
-    gornja_m = 0.
+    gornja_m = 0
     donja_m = 0.
     for i in range(N):
         gornja_m += func(x_gornja)*dx
