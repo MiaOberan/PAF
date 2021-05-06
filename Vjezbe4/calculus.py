@@ -18,7 +18,7 @@ def deriviraj(func,h,x1,x2,m=3):
         elif m == 2:
             d = deriv(func,x,h)
         der_lista.append(d)
-        #Sprint(x,d)
+        
     return x_lista,der_lista
 
 def integracija1(func,a,b,N):
