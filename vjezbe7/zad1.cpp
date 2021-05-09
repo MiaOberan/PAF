@@ -19,7 +19,7 @@ class Particle{
         xkoor =  xkoor_;
         ykoor = ykoor_;
         float kut2_;
-        kut2_= kut2_*pi/180;
+        kut2_= kut1_*pi/180;
         vx = v*cos(kut2_);
         vy = v*sin(kut2_);
        
