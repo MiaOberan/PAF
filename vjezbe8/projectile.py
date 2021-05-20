@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import math 
 
-class projectile:
+class Projectile:
     def __init__(self):
         self.vx_list = []
         self.vy_list = []
@@ -63,6 +63,8 @@ class projectile:
         self.y += + self.vy*self.dt
         self.x_list.append(self.x)
         self.y_list.append(self.y)
+        
+
     def move(self):
         while self.y >= 0:
             self.__move()
@@ -76,9 +78,9 @@ class projectile:
 
     def __ay(self,v):
         return -9.81-abs(self.vy*self.vy*self.ro*self.cd*self.A)/(2*self.m)
-    
+
     def __move_ar(self):
-        self.vx += self.ax*self.dt     
+        self.vx += self.ax*self.dt      
         self.x += self.vx*self.dt
         self.ax = self.__ax(self.vx)
         self.x_list.append(self.x)
@@ -98,7 +100,8 @@ class projectile:
             self.t_list.append(self.t)
         return self.x_list,self.y_list
 
-     def __runge_kutta(self):
+    def __runge_kutta(self):    
+        
         k1vx = self.__ax(self.vx)*self.dt 
         k1x = self.vx*self.dt
         k2vx = self.__ax(self.vx + k1vx/2)*self.dt
@@ -144,7 +147,7 @@ class projectile:
         return self.x_list,self.y_list
         
     def plot_trajectory(self):
-        plt.figure("Graf trenutno")
+        plt.figure("Graf za trenutno stanje")
         plt.plot(self.x_list,self.y_list)
         plt.title("x-y graf")
         plt.xlabel("x[m]")
@@ -155,6 +158,18 @@ class projectile:
         self.move_ar() 
         return max(self.x_list)
 
+    def range_r_k(self):
+        self.runge_kutta() 
+        return max(self.x_list)
+
     def analiticki_domet(self):
         D = ((self.v0**2)*math.sin(2*self.kut))/9.81
         return D
+
+    def total_time(self):
+        self.runge_kutta()
+        return self.t
+
+    def max_speed(self):
+        self.runge_kutta()
+        return max(self.v_list)
