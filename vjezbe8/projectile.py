@@ -97,6 +97,51 @@ class projectile:
             self.t += self.dt
             self.t_list.append(self.t)
         return self.x_list,self.y_list
+
+     def __runge_kutta(self):
+        k1vx = self.__ax(self.vx)*self.dt 
+        k1x = self.vx*self.dt
+        k2vx = self.__ax(self.vx + k1vx/2)*self.dt
+        k2x = (self.vx + k1vx/2)*self.dt
+        k3vx = self.__ax(self.vx + k2vx/2)*self.dt
+        k3x = (self.vx + k2vx/2)*self.dt
+        k4vx = self.__ax(self.vx + k3vx)*self.dt
+        k4x = (self.vx + k3vx)*self.dt
+
+        self.vx += (1/6)*(k1vx + 2*k2vx + 2*k3vx + k4vx)
+        self.x += (1/6)*(k1x + 2*k2x + 2*k3x + k4x)
+        
+        self.ax = self.__ax(self.vx)
+
+        self.x_list.append(self.x)
+        self.vx_list.append(self.vx)
+        self.ax_list.append(self.ax)
+
+        
+        k1vy = self.__ay(self.vy)*self.dt 
+        k1y = self.vy*self.dt
+        k2vy = self.__ay(self.vy + k1vy/2)*self.dt
+        k2y = (self.vy + k1vy/2)*self.dt
+        k3vy = self.__ay(self.vy + k2vy/2)*self.dt
+        k3y = (self.vy + k2vy/2)*self.dt
+        k4vy = self.__ay(self.vy + k3vy)*self.dt
+        k4y = (self.vy + k3vy)*self.dt
+
+        self.vy += (1/6)*(k1vy + 2*k2vy + 2*k3vy + k4vy)
+        self.y += (1/6)*(k1y + 2*k2y + 2*k3y + k4y)
+
+        self.ay = self.__ay(self.vy)
+
+        self.y_list.append(self.y)
+        self.vy_list.append(self.vy)
+        self.ay_list.append(self.ay)
+
+    def runge_kutta(self):   
+        while self.y >= 0:
+            self.__runge_kutta()
+            self.t += self.dt
+            self.t_list.append(self.t)
+        return self.x_list,self.y_list
         
     def plot_trajectory(self):
         plt.figure("Graf trenutno")
