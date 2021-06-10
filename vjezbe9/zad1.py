@@ -29,25 +29,4 @@ class HarmonicOscillator:
             self.a_l.append(self.a)
             self.t_l.append(self.t)
         return self.x_l,self.v_l,self.a_l,self.t_l
-
-    def plot_trajectory(self,dt,t):
-        x,v,a,t = self.oscillate(dt,t)
-        plt.subplot(1,3,1)
-        plt.plot(t,x)
-        plt.subplot(1,3,2)
-        plt.plot(t,v)
-        plt.subplot(1,3,3)
-        plt.plot(t,a)
-        plt.show()
-    
-    def reset(self):
-        del self.k
-        del self.m
-        del self.x
-        del self.v
-        del self.a
-        del self.t
-        del self.x_l
-        del self.v_l
-        del self.a_l
-        del self.t_l
+   
