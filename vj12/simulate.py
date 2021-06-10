@@ -20,7 +20,7 @@ ss.add_planet(mars)
 ss.evolve(2*year)
 
 fig= plt.figure(figsize=(10,10))
-plt.plot(sun.x,sun.y,label=sun.name,color="yellow", linewidth=5.0)
+plt.plot(sun.x,sun.y,label=sun.name,color="yellow", linewidth=7.0)
 plt.plot(mercury.x,mercury.y,label=mercury.name,color="green")
 plt.plot(mercury.x[-1],mercury.y[-1],"o",color="green")
 plt.plot(earth.x,earth.y,label=earth.name,color="blue")
