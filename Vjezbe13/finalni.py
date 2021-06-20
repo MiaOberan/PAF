@@ -9,75 +9,67 @@ class Planet:
     def __init__(self, name, m, r, v):
         self.name = name
         self.m    = m
-        self.r    = r # set position vector to initial position
-        self.v    = v # set velocity vector to initial velocity
-        self.a    = np.array((0.,0.)) # set acceleration vector to 0
+        self.r    = r 
+        self.v    = v 
+        self.a    = np.array((0.,0.)) 
 
-        # Helper array to calculate distance between all objects needed to calculate the force
+        
         self.dr = []
-        self.dist = []
-
-        # Remember position coordinates for plotting purposes
+        self.distance = []
         self.x = []
         self.y = []
-
         self.x.append(r[0])
         self.y.append(r[1])
 
 class Universe:
-    # Define constants
     G = 6.67408e-11
     day = 60*60*24
 
     def __init__(self, dt=0.1):
-        self.planets = [] # prepare array to store all planets in
-        self.dt = dt * self.day # step size
-        self.t = [] # we will save elapsed time of the simulation in case it is needed
+        self.planets = [] 
+        self.dt = dt * self.day 
+        self.t = [] 
 
     def add_planet(self, planet):
         self.planets.append(planet)
 
-    def remove_planet(self, planet):
+    def delete_planet(self, planet):
         self.planets.remove(planet)
 
     def evolve(self, time, method = 'euler'):
         self.t.append(0)
-        steps = int(time/self.dt) # calculate the number of steps of the simulation
+        steps = int(time/self.dt) 
         i=1
         while i < steps:
-            self.__move(i) # move all planets
+            self.__move(i) 
             i += 1
 
     def __move(self, i):
-        self.t.append(self.t[i-1] + self.dt) # Save time
+        self.t.append(self.t[i-1] + self.dt) 
 
-        # Calculate distances between all planets
-        for p1 in self.planets: # we are calculating distace of p1 with respect to all other planets in the Universe
-            p1.dr.clear() # clear all distances from the prvious calculation
+        
+        for p1 in self.planets: 
+            p1.dr.clear() 
             
-            for p2 in self.planets: # we have to loop over all other planets (p2) in the Universe
-                if (p1 == p2): # If the loop over other planets ends up on the planet p1 just put 0 as a force contribution
+            for p2 in self.planets: 
+                if (p1 == p2): 
                     p1.dr.append(np.array((0.,0.)))
                 elif p2.name=="comet":
                     radius=random.randint(10**4,4*10**4)
-                    dis=np.linalg.norm(p1.r - p2.r)
-                    p1.dist.append(dis)
-                    if dis<radius:
+                    udaljenost=np.linalg.norm(p1.r - p2.r)
+                    p1.distance.append(udaljenost)
+                    if udaljenost<radius:
                         break
 
-
-                elif np.linalg.norm(p1.r -p2.r)<3.5*au: # Otherwise calculate the distance between the planets accoding to Newton gravity law and include mass and gravitational constant
+                elif np.linalg.norm(p1.r -p2.r)<4*au:
                     p1.dr.append((-1*self.G*p2.m*(p1.r - p2.r))/(np.linalg.norm(p1.r - p2.r))**3)
 
-            # Move planets
-            p1.a *= 0 # Clear acceleration from previous calculations
+            
+            p1.a *= 0 
             for dr in p1.dr:
-                p1.a += dr # Sum contributions from all planets to the total acceleration
+                p1.a += dr 
 
-            # Update velocity and position using Eulers method
             p1.v = p1.v + p1.a*self.dt
             p1.r = p1.r + p1.v*self.dt
-
-            # Save x,y coordinates
             p1.x.append(p1.r[0])
             p1.y.append(p1.r[1])
