@@ -20,7 +20,6 @@ earth = universe.Planet("Earth", 5.9742e24, np.array((-1*au,0.)), np.array((0.,2
 mercury= universe.Planet("Mercury", 1.635e20, np.array((-0.3*au,0.)), np.array((0.,48000.)))
 venus= universe.Planet("Venus", 1.635e18, np.array((-0.7*au,0.)), np.array((0.,35000.)))
 mars= universe.Planet("Mars", 6.39e24, np.array((-1.524*au,0.)), np.array((0.,24100.)))
-
 ss = universe.Universe() 
 
 def signum():
