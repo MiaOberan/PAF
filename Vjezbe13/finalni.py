@@ -11,9 +11,7 @@ class Planet:
         self.m    = m
         self.r    = r 
         self.v    = v 
-        self.a    = np.array((0.,0.)) 
-
-        
+        self.a    = np.array((0.,0.))
         self.dr = []
         self.distance = []
         self.x = []
