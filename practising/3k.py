@@ -6,7 +6,7 @@ def jednoliko_gibanje(F,m,t):
     N = t*2
     v = 0
     x = 0
-    t = 0
+    t =0
     akceleracije = []
     brzine = []
     pomaci = []
