@@ -20,6 +20,7 @@ earth = universe.Planet("Earth", 5.9742e24, np.array((-1*au,0.)), np.array((0.,2
 mercury= universe.Planet("Mercury", 1.635e20, np.array((-0.3*au,0.)), np.array((0.,48000.)))
 venus= universe.Planet("Venus", 1.635e18, np.array((-0.7*au,0.)), np.array((0.,35000.)))
 mars= universe.Planet("Mars", 6.39e24, np.array((-1.524*au,0.)), np.array((0.,24100.)))
+
 ss = universe.Universe() 
 
 def signum():
@@ -28,7 +29,7 @@ def signum():
         if broj !=0:
             return broj
 
-for i in range(1000):
+for i in range(10):
 
     rx, ry = signum()*random.randint(4*au,5*au), signum()*random.randint(4*au,5*au)
     vx, vy = -np.sign(rx)*random.randint(1*10**4,4*10**4), -np.sign(ry)*random.randint(1*10**4,4*10**4)
@@ -50,11 +51,11 @@ for i in range(1000):
 
     ss.delete_planet(comet)
 
-    min_mercury_distance.append(min(mercury.dist)/au)
-    min_venus_distance.append(min(venus.dist)/au)
-    min_earth_distance.append(min(earth.dist)/au)
-    min_mars_distance.append(min(mars.dist)/au)
-    min_sun_distance.append(min(sun.dist)/au)
+    min_mercury_distance.append(min(mercury.distance)/au)
+    min_venus_distance.append(min(venus.distance)/au)
+    min_earth_distance.append(min(earth.distance)/au)
+    min_mars_distance.append(min(mars.distance)/au)
+    min_sun_distance.append(min(sun.distance)/au)
     ss.__init__()
 
 
@@ -64,7 +65,7 @@ axs[0].hist(min_mercury_distance, len(min_mercury_distance), facecolor='magenta'
 axs[1].hist(min_venus_distance, len(min_venus_distance), facecolor='magenta', alpha=0.5,label="Venus")
 axs[2].hist(min_earth_distance, len(min_earth_distance), facecolor='magenta', alpha=0.5,label="Earth")
 axs[3].hist(min_mars_distance, len(min_mars_distance), facecolor='magenta', alpha=0.5,label="Mars")
-axs[4].hist(min_sun_dist, len(min_sun_dist), facecolor='magenta', alpha=0.5,label="Sun")
+axs[4].hist(min_sun_distance, len(min_sun_distance), facecolor='magenta', alpha=0.5,label="Sun")
 plt.show()
 plt.savefig("Histogram kometa")
 
