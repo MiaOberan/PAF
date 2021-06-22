@@ -7,3 +7,7 @@ while True:
         print("nemoguce je djeljenje s nulom ponovite upis: ")
     elif x1!=x2:
         break
+
+k=(y2-y1)/(x2-x1)
+l=-x1+y1
+print("y="+str(k)+"x + "+str(l))
