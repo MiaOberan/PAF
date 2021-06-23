@@ -57,3 +57,21 @@ print(p1.range(0.001))
 p1.plot_trajectory()
 p1.reset()
 
+p1 = Particle(70,15,0,0,0.01)
+dt_ = []
+dt = 0.00
+greske = []
+
+for i in range(100):
+    p1=Particle(70,15,0,0,0)
+    dt = dt + 0.01
+    greska = abs(p1.range(dt) - p1.analiticko_rjesenje(15))/p1.analiticko_rjesenje(15)*100
+    dt_.append(dt)
+    greske.append(greska)
+    p1.reset()
+
+plt.xlabel('dt/s')
+plt.ylabel('greska/ % ')
+plt.plot(dt_, greske,"c")
+plt.show()
+
