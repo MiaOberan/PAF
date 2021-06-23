@@ -52,3 +52,8 @@ class Particle:
     def analiticki(self):
         D = (self.v0**2*sin(2*self.theta))/9.81
         return D
+p1 = Particle(70,15,0,0,0.01)
+print(p1.range(0.001))
+p1.plot_trajectory()
+p1.reset()
+
