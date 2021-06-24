@@ -10,6 +10,7 @@ class Bullet:
         self.ylist = []
         self.vlist = []
         self.tlist = []
+        self.xlist.append(self.x)
         self.ylist.append(self.y)
         self.vlist.append(self.v)
         self.tlist.append(self.t)
