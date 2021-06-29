@@ -1,6 +1,7 @@
 import universe
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 au = 1.496e11
 day = 60*60*24
@@ -33,4 +34,54 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.title('x-y graf')
 plt.legend(loc="upper right")
+plt.show()
+
+fig,ax = plt.figure(figsize=(10, 10)), plt.axes(xlim=(-3e11, 3e11), ylim=(-3e11, 3e11))
+
+line, = ax.plot([], [],'o',color="yellow")
+line1, = ax.plot([], [],'o',color="blue")
+line2, = ax.plot([], [], 'o',color="green")
+line3, = ax.plot([], [], 'o',color="orange")
+line4, = ax.plot([], [], 'o',color="magenta")
+
+xe, ye = [], []
+xs, ys = [], []
+xmar,ymar = [],[]
+xmer, ymer = [],[]
+xv,yv = [], []
+def init():
+    line.set_data([],[])
+    line1.set_data([],[])
+    line2.set_data([],[])
+    line3.set_data([],[])
+    line4.set_data([],[])
+    return line,line1,line2,line3,line4
+
+def animate(i):
+    xs.append(sun.x[i])
+    ys.append(sun.y[i])
+    xe.append(earth.x[i])
+    ye.append(earth.y[i])
+    xmer.append(mercury.x[i])
+    ymer.append(mercury.y[i])
+    xv.append(venus.x[i])
+    yv.append(venus.y[i])
+    xmar.append(mars.x[i])
+    ymar.append(mars.y[i])
+
+
+    line.set_data(xs[i],ys[i])
+    line1.set_data(ye[i],xe[i])
+    line2.set_data(xmer[i],ymer[i])
+    line3.set_data(xv[i],yv[i])
+    line4.set_data(xmar[i],ymar[i])
+    
+
+    return line,
+plt.plot(sun.x,sun.y,label=sun.name,color="yellow", linewidth=5.0)
+plt.plot(earth.x,earth.y,label=earth.name,color="blue")
+plt.plot(mars.x,mars.y,label=mars.name,color="magenta")
+plt.plot(mercury.x,mercury.y,label=mercury.name,color="green")
+plt.plot(venus.x,venus.y,label=venus.name,color="orange")
+anim = animation.FuncAnimation(fig, animate, init_func=init, interval=1)
 plt.show()
